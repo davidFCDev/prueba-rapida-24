@@ -1,19 +1,20 @@
-import { useState } from "react";
 import "./App.css";
+import { useCatFact } from "./hooks/useCatFact";
 
 function App() {
+  const { fact, refreshFact } = useCatFact();
 
-  const [randomFact, setRandomFact] = useState("");
-
-  const firstThreeWords = randomFact.split(" ").slice(0, 3).join(" ");
+  const handleClick = () => {
+    refreshFact();
+  };
 
   return (
     <>
       <h1>App de gatitos</h1>
 
-      <button>New fact</button>
+      <button onClick={handleClick}>New fact</button>
 
-      {randomFact && <p>{randomFact}</p>}
+      {fact && <p>{fact}</p>}
     </>
   );
 }
