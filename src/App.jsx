@@ -1,18 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-import { useEffect } from "react";
-
-const URL_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
 
 function App() {
+
   const [randomFact, setRandomFact] = useState("");
 
-  useEffect(() => {
-    fetch(URL_ENDPOINT_RANDOM_FACT)
-      .then((response) => response.json())
-      .then((data) => setRandomFact(data.fact));
-  }, []);
-  
+  const firstThreeWords = randomFact.split(" ").slice(0, 3).join(" ");
+
   return (
     <>
       <h1>App de gatitos</h1>
