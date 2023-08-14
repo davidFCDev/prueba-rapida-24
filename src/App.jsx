@@ -1,29 +1,6 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import { useCatFact } from "./hooks/useCatFact";
-
-const CAT_PREFIX_IMAGE_URL = "https://cataas.com";
-
-function useCatImage({ fact }) {
-  const [imageUrl, setImageUrl] = useState();
-
-  useEffect(() => {
-    if (!fact) return;
-
-    const threeFirstWords = fact.split(" ", 3).join(" ");
-
-    fetch(
-      `https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`
-    )
-      .then((res) => res.json())
-      .then((response) => {
-        const { url } = response;
-        setImageUrl(url);
-      });
-  }, [fact]);
-
-  return { imageUrl: `${CAT_PREFIX_IMAGE_URL}${imageUrl}` };
-}
+import { useCatImage } from "./hooks/useCatImage";
 
 function App() {
   const { fact, refreshFact } = useCatFact();
